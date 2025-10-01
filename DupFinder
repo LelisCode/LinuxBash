@@ -1,0 +1,7 @@
+if find path/ -type -f -exec md5sum | sort | uniq -d -w32 | grep -q .;then
+echo "Duplicates found"
+
+else
+echo "No Duplicates found"
+
+fi
