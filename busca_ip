@@ -1,0 +1,26 @@
+nano busca_ip.sh  #cria arquivo para ter um script de procura de ips na rede
+
+#!/bin/bash
+
+if [ "$1" == "" ]
+
+then
+
+echo "Por favor insira o ID da rede!"
+echo "Exemplo ./busca_ip.sh 192.168.0"
+
+else
+for ip in $(seq 1 254); do 
+
+ping -c 1 $1.$ip| grep "64 bytes" | cut -d " " -f 4 | tr -d ":" &
+
+
+
+
+done
+fi
+
+
+
+./busca_ip.sh 192.168.0 > ips.txt   #Armazena os IPS dentro do arquivo ips.txt
+nmap -iL ips.txt   #Faz uma varredura nas portas dos IPS na rede
