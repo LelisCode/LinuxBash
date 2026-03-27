@@ -10,10 +10,12 @@ echo "Por favor insira o ID da rede!"
 echo "Exemplo ./busca_ip.sh 192.168.0"
 
 else
-for ip in $(seq 1 254); do 
+for ip in $(seq 1 254); do #Cria um laço que repete o comando 20 vezes, substituindo a variável $ip pelos números de 1 a 20.
 
-ping -c 1 $1.$ip| grep "64 bytes" | cut -d " " -f 4 | tr -d ":" &
 
+ping -c 1 $1.$ip| grep "64 bytes" | cut -d " " -f 4 | tr -d ":" &  #Envia apenas 1 pacote (-c 1) para o endereço IP atual.
+                                                                   #Filtra a saída para mostrar apenas as linhas que confirmam uma resposta bem-sucedida (onde o dispositivo respondeu com o tamanho padrão do pacote)
+                                                                   #64 (1) bytes (2) from (3) 192.168.0.5: (4) icmp_seq=1...
 
 
 
